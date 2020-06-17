@@ -1,0 +1,29 @@
+
+DROP TABLE IF EXISTS user;
+DROP TABLE IF EXISTS image;
+
+CREATE TABLE user(
+	id INTEGER PRIMARY KEY AUTOINCREMENT,
+	username TEXT UNIQUE NOT NULL,
+	password TEXT NOT NULL,
+	email TEXT NOT NULL,
+	last_name TEXT NOT NULL,
+	first_name TEXT NOT NULL,
+	gender TEXT,
+	age INTEGER,
+	sexual_pref TEXT,
+	biography TEXT,
+	interest_tags TEXT,
+	registered_on DATETIME NOT NULL,
+	admin BOOLEAN NOT NULL DEFAULT FALSE,
+	confirmed BOOLEAN NOT NULL DEFAULT FALSE
+);
+
+
+CREATE TABLE image(
+	id INTEGER PRIMARY KEY AUTOINCREMENT,
+	profile_id INTEGER NOT NULL,
+	image_url TEXT NOT NULL,
+	image_type TEXT NOT NULL,
+	FOREIGN KEY (profile_id) REFERENCES user (id)
+);
